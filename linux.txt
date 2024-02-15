@@ -1,0 +1,20 @@
+#!/bin/bash
+
+echo "Enter the directory to delete files from:"
+read directory
+echo "Enter the file extension to delete (e.g. .txt):"
+read extension
+
+if [ -z "$directory" ]; then
+    echo "Please enter a valid directory."
+    exit 1
+fi
+
+if [ -z "$extension" ]; then
+    echo "Please enter a valid file extension."
+    exit 1
+fi
+
+find "$directory" -type f -name "*$extension" -exec rm -f {} +
+
+echo "All files with extension $extension have been deleted from $directory."
